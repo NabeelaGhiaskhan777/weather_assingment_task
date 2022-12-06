@@ -1,0 +1,43 @@
+<div class="search">
+    <form  #form="ngForm" (submit)="getWeather()">
+    
+      <input type="text" placeholder="search-city" name="city" [(ngModel)]="cityname">
+    </form>
+    
+    </div>
+<div class="container">
+    <div class="card">
+        <img
+        class="object-cover"
+        width="780"
+        height="304"
+        [src]="image"
+        alt=""
+       
+      />
+        <div class="row">
+            <div class="col-9 left">
+                <div class="row top">
+                    <div class="col">{{Weather.name}}</div>
+                    <div class="col">{{currentDate | date:'yyyy-MM-dd'}}</div>
+                    <div class="col">Rain map</div>
+                </div>
+                <div class="row">
+                    <div class="col-7 temp">{{WeatherD.current.temp | number: '1.0-0'}}&deg;</div>
+                    <div class="col-5 time"><p>{{currentDate.getTime()  | date:'h:mm a'}}</p><h2><b>{{dayName}}</b></h2><p>{{WeatherD.current.weather[0].description}}</p></div>
+                </div>
+                <div class="row bottom">
+                    <div class="col"><hr></div>
+                    <div class="col border" *ngFor="let weeks of WeatherD.daily; let i=index;">
+                        <div class="row">{{getDay(dayName , i)}}</div>
+                        <div class="row"><b>{{weeks.temp.day  | number: '1.0-0'}}&deg;</b></div>
+                    </div>
+                 
+                    <div class="col"><hr></div>
+                </div>
+              
+            </div>
+         
+        </div>
+    </div>
+  </div>
